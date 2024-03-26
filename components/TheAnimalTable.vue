@@ -2,7 +2,7 @@
 import { computed } from 'vue'
 import type { PropType } from 'vue'
 import type { Animal } from '../types'
-import { calculateAgeInYears } from '../composables/helpers'
+import { calculateAgeInYears, calculateFoodForNextMonth } from '../composables/helpers'
 
 const props = defineProps({
   animals: {
@@ -33,35 +33,55 @@ const animalsSortedByName = computed(() => props.animals.slice().sort((animalA: 
         <th>Weight (kg)</th>
         <th>Height (m)</th>
         <th>Favorite Fruit</th>
+        <th>Monthly Food Requirement</th>
       </tr>
     </thead>
     <tbody>
-      <tr
-        v-for="({ id, species, name, gender, birthdate, weight, height, favouriteFruit }, animalIndex) in animalsSortedByName"
-        :key="id" class="hover:bg-gray-200">
+      <tr v-for="(animal, animalIndex) in animalsSortedByName" :key="id" class="hover:bg-gray-200">
         <td>{{ animalIndex + 1 }}</td>
-        <td>{{ species }}</td>
-        <td>{{ name }}</td>
-        <td>{{ gender }}</td>
-        <td>{{ calculateAgeInYears(birthdate) }}</td>
-        <td>{{ weight }}</td>
-        <td>{{ height }}</td>
-        <td>{{ favouriteFruit }}</td>
+        <td>{{ animal.species }}</td>
+        <td>{{ animal.name }}</td>
+        <td>{{ animal.gender }}</td>
+        <td>{{ calculateAgeInYears(animal.birthdate) }}</td>
+        <td>{{ animal.weight }}</td>
+        <td>{{ animal.height }}</td>
+        <td>{{ animal.favouriteFruit }}</td>
+        <td>{{ calculateFoodForNextMonth(animal) }}</td>
       </tr>
     </tbody>
   </table>
 </template>
 
 <style scoped>
+.animal-details {
+  max-height: 500px;
+  /* Limiting max height for better readability */
+  overflow-y: auto;
+  /* Adding vertical scrollbar when content exceeds max height */
+}
+
 table {
-  @apply text-left
+  width: 100%;
+  /* Ensuring table occupies full width of container */
+  border-collapse: collapse;
+  /* Removing default table cell spacing */
 }
 
+th,
 td {
-  @apply w-40
+  padding: 8px;
+  /* Adding padding to cells for better spacing */
+  text-align: left;
+  /* Aligning text to left within cells */
 }
 
-tr {
-  @apply border-b-2
+th {
+  background-color: #f2f2f2;
+  /* Adding background color to header cells */
+}
+
+tr:hover {
+  background-color: #f0f0f0;
+  /* Changing background color on hover for better visibility */
 }
 </style>
