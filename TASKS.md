@@ -37,6 +37,7 @@ In a first step you should inspect the health of the project and report on every
 Please take stock fo the page using developer tools, your instincts, ... and write down below what you find.
 
 // Your solution
+Problems : There are a lot mistyping, and some bugs like copy pasting of some code, also there was some an instance of passing seperate variavle to the animal table view 
 
 ### Task 2: Get the basics running again
 
@@ -47,6 +48,9 @@ Now that we know that is broken, let's try to get things running again, step by 
 Zookeepers reported that the error sometimes changes when reloading the page after the initial start.
 
 // Your solution
+Problem 1: A 500 error related to the  /api/animals, so there was a typo.
+Problem 2 : Alert message was causing another bug
+Problem 3: There was some copy paste or mistypeing in the fakeAnimal
 
 ### Task 3: Start the documentation
 
@@ -55,12 +59,14 @@ You got it to work! Nice, now the basic functionality is back for the zookeepers
 Add your solution below, either as an inline text or link to new documentation file(s) you've created.
 
 // Your solution
+[Link Text](README.md)
 
 ### Task 4: Test fixing
 
 There's a failing test that for the age calculation helper. Can you figure out what is broken in the implementation or the test it is and resolve the problem? All zookeepers are really interested in what is going on here.
 
 // Your solution
+[Link Text](composables/helpers.test.ts)
 
 ### Task 5: UI Fixing and Improvement
 
@@ -82,6 +88,14 @@ Please fix the two above problems and outline what was necessarry to do so.
 The zookeepers want to be able to see all details of an animal. Please create such a view that allows them to do so, outline anything about your process while adding the view below. The zookeepers didn't have time for more information, sorry. They'll surely be glad to criticize the first version intensly though and will want to know why you went for the approach you chose.
 
 // Your solution
+Improved Table Styling:
+1. Added background color to header cells for better differentiation.
+2. Added padding to cells for better spacing.
+3. Aligned text to the left within cells for consistency.
+4. Added hover effect to table rows for better visual feedback -> necessery when reading the table
+
+Scrollable Container:
+1. Wrapped the table in a scrollable container to limit the maximum height of the table and provide a scrollbar when content exceeds the limit. This prevents the table from occupying too much space on the page.
 
 ### Task 7: Logic Feature
 
@@ -97,6 +111,13 @@ To calculate the food an animal needs in kilograms in 1 day, the zookeepers use 
 5. If the animal is a fish: The required food is 0 kg
 
 // Your solution
+
+Solution:
+1. Make a helper function to take the animal object and calculate the food required. 
+2. Use the following formula, and write the logic to calculate
+3. Im the view use the helper function to calculate the food required
+4. Add the food required in a new column 
+[Link Text](composables/helpers.test.ts)
 
 ### Task 8: Plan New Feature
 
@@ -122,9 +143,37 @@ Please create a breakdown for this feature. You can focus on aspects like: What 
 Don't spend more thatn 15-30 minutes here - planning like this can quickly become quite complex and we want to prevent this challenge taking too much of your time!
 
 // Your solution
+UI/UX Design : 
+1. Use a calendar-based layout for the overview, with each day showing a list of feeding tasks.
+2. Display the animal name, food fruit, and required amount of food for each task.
+3. Provide options for adding, editing, and deleting feeding tasks directly from the overview.
+4. Clean UI which is intuitive and easy to use, with clear labels and instructions.
+
+Frontend Tasks:
+1. Design and develop UI components for creating, updating, and deleting feeding tasks.
+2. Implement a calendar view to display feeding tasks grouped by day.
+3. Develop logic to fetch and display upcoming feeding tasks in the overview.
+4. Design and implement the UI/UX for the overview, showing the animal name, food fruit, and required amount of food for each task.
+
+Backend Tasks:
+1. Implement a data model/schema for feeding tasks, including fields for animal name, feeding date, fruit, and required amount of food.
+2. Develop API endpoints for creating, updating, deleting, and retrieving feeding tasks.
+3. Implement business logic to calculate the required amount of food based on the algorithm from the previous task.
+4. Implement logic to group feeding tasks by day for the overview.
+
+Integration Tasks:
+1. Integrate backend API endpoints with frontend components to fetch and manage feeding tasks.
+2. Ensure proper error handling and validation for input fields.
+
+Some Other Considerations:
+1. What happens if an animal has multiple feeding tasks on the same day?
+2. Should there be permissions or access control for managing feeding tasks (admin/user view)?
 
 ### Task 9: Finish the documentation
 
 Revisit docs from step 3, see if you want to add anything. Also think about bonuses. Add a general comment about anything (inside the universe of the challenge or out of it) if you want to.
 
 // Your solution
+Apart from the generic read me documentation, we also need to use : 
+npm test -- -u -> to update the snapshots, since we added new columns "Name", "Height (m)", "Favorite Fruit", and "Monthly Food Required"
+[Link Text](README.md)
