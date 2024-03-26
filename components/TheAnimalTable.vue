@@ -33,7 +33,7 @@ const animalsSortedByName = computed(() => props.animals.slice().sort((animalA: 
         <th>Weight (kg)</th>
         <th>Height (m)</th>
         <th>Favorite Fruit</th>
-        <th>Monthly Food Requirement</th>
+        <th>Monthly Food Required</th>
       </tr>
     </thead>
     <tbody>
